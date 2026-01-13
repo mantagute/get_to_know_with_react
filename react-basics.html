@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>React Basics - Official Links</title>
+    <title>React plays</title>
 </head>
 <body>
     <div class="js-container"></div>
@@ -13,19 +13,53 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel"> 
-        // babel translates JSX into Js
+
+        function ProductDetails({product, price, discountPrice}) {
+            return (
+                <>
+                    <p>{product}</p>
+
+                    {discountPrice === "" && (
+                        <p>Price: ${price}</p>
+                    )}
+
+                    {discountPrice !== "" && (
+                        <>
+                            <del><p>Price: ${price}</p></del>
+                            <p>Discount price: ${discountPrice}</p>
+                        </>
+                    )}
+
+                    <button>Add to Cart</button>
+                </>
+            );
+        }; 
+
+        function App() {
+            return (
+                <>
+                    <ProductDetails
+                        product="Cotton Socks"
+                        price="10.90"
+                        discountPrice="5.45"
+                    ></ProductDetails>
+                    <ProductDetails
+                        product="Tennis balls"
+                        price="6.00"
+                        discountPrice=""
+                    ></ProductDetails>
+                    <ProductDetails
+                        product="Plain T-Shirt"
+                        price="7.99"
+                        discountPrice=""
+                    ></ProductDetails>
+                </>
+            );
+        };
+
         const container = document.querySelector('.js-container');
-        const root = ReactDOM.createRoot(container); // sets tup react 
-        
-
-        const div = (
-            <div>
-                <button>Hello</button> 
-                <p>paragraph of text</p>
-            </div>
-        ); // display multiple elements
-
-        root.render(div);
+        const root = ReactDOM.createRoot(container);
+        root.render(<App></App>);
 
     </script>
 </body>
