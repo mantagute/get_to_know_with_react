@@ -14,56 +14,51 @@
 
     <script type="text/babel"> 
 
-    function ResetButton({setCounter}) {
+    function UserInput({inputText, setInputText}) {
 
-        function toZero() {
-            setCounter(0);
+        function saveInputText(event) {
+                setInputText(event.target.value);
         }
 
-        return (
-            <>
-                <button onClick={toZero}>Reset</button>
+        return (    
+            <> 
+                <input 
+                    type="text" 
+                    placeholder="Type a name here" 
+                    size="30"
+                    onChange={saveInputText}
+                    value={inputText}
+                ></input>
             </>
-        )
+        );
     }
 
-    function ButtonCounter({counter, setCounter}) {
-    
-        function increaseCounter() {
-            setCounter(counter + 1); // updater(like a map)
-        }
-
+    function ResponsiveText({inputText}) {
         return (
-            <>
-                <button onClick={increaseCounter}>Clicked {counter} {counter === 1 ? 'time': 'times'} </button>
-            </>
-        )
+            <p> Hello, {inputText}</p>
+        );
     }
 
     function App() {
 
-        const [counter, setCounter] = React.useState(0);
+        const [inputText, setInputText] = React.useState('');
 
-        return (
+        return(
             <>
-                <ButtonCounter
-                    counter = {counter}
-                    setCounter = {setCounter}
-                ></ButtonCounter>
-                <ButtonCounter
-                    counter = {counter}
-                    setCounter = {setCounter}
-                ></ButtonCounter>
-                <ResetButton
-                    setCounter={setCounter}
-                ></ResetButton>
+                <UserInput
+                    inputText={inputText}
+                    setInputText={setInputText}
+                ></UserInput>
+                <ResponsiveText
+                    inputText={inputText}
+                ></ResponsiveText>
             </>
         )
     }
 
-        const container = document.querySelector('.js-container');
-        const root = ReactDOM.createRoot(container);
-        root.render(<App></App>);
+    const container = document.querySelector('.js-container');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App></App>);
 
     </script>
 </body>
