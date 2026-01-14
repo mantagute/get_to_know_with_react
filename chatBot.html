@@ -22,12 +22,29 @@
         function ChatInput({chatMessages, setChatMessages}) {
             
             const [inputText, setInputText] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false);
 
             function saveInputText(event) {
                 setInputText(event.target.value);
             }
 
-            function sendMessage() {
+            function checkKeyPressed(event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+                else if (event.key === 'Escape') {
+                    setInputText('');
+                }
+            }
+
+            async function sendMessage() {
+
+                if (isLoading || inputText === ""){
+                    return;
+                }
+
+                setIsLoading(true);
+
                 const newChatMessages = [
                     ...chatMessages,
                     {
@@ -37,9 +54,18 @@
                     }
                 ];
 
-                setChatMessages(newChatMessages);
+                setChatMessages([
+                    ...newChatMessages,
+                    {
+                        message: 'Loading...',
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
+                ])
 
-                const response = Chatbot.getResponse(inputText);
+                setInputText('');
+
+                const response = await Chatbot.getResponseAsync(inputText);
                 setChatMessages([
                     ...newChatMessages,
                     {
@@ -49,9 +75,24 @@
                     }
                 ]);
 
-                setInputText('');
-            }   
+                setIsLoading(false);
+            }  
 
+            return (    
+                    <> 
+                        <input 
+                            type="text" 
+                            placeholder="Send a message to Chatbot" 
+                            size="30"
+                            onChange={saveInputText}
+                            value={inputText}
+                            onKeyDown={checkKeyPressed}
+                        />
+                        <button
+                            onClick={sendMessage}
+                        >Send</button>
+                    </> 
+                );
         };
 
         function ChatMessage({message, sender}) {
@@ -63,7 +104,7 @@
             if (sender === 'robot') {
                 return (
                     <div>
-                        <img src="images/robotIcon.jpg" width="50" height="50"></img>
+                        <img src="images/robotIcon.jpg" width="50" height="50"/>
                         {message}
                     </div>
                 )
@@ -73,11 +114,11 @@
             return (
                 <div>
                     {sender === 'robot' && (
-                        <img src="images/robotIcon.jpg" width="50" height="50"></img>
+                        <img src="images/robotIcon.jpg" width="50" height="50"/>
                     )}
                     {message}
                     {sender === 'user' && (
-                        <img src="images/userIcon.jpg" width="50" height="50"></img>
+                        <img src="images/userIcon.jpg" width="50" height="50"/>
                     )}
                 </div>
             );
