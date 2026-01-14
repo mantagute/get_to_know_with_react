@@ -14,48 +14,52 @@
 
     <script type="text/babel"> 
 
-        function ProductDetails({product, price, discountPrice}) {
-            return (
-                <>
-                    <p>{product}</p>
+    function ResetButton({setCounter}) {
 
-                    {discountPrice === "" && (
-                        <p>Price: ${price}</p>
-                    )}
+        function toZero() {
+            setCounter(0);
+        }
 
-                    {discountPrice !== "" && (
-                        <>
-                            <del><p>Price: ${price}</p></del>
-                            <p>Discount price: ${discountPrice}</p>
-                        </>
-                    )}
+        return (
+            <>
+                <button onClick={toZero}>Reset</button>
+            </>
+        )
+    }
 
-                    <button>Add to Cart</button>
-                </>
-            );
-        }; 
+    function ButtonCounter({counter, setCounter}) {
+    
+        function increaseCounter() {
+            setCounter(counter + 1); // updater(like a map)
+        }
 
-        function App() {
-            return (
-                <>
-                    <ProductDetails
-                        product="Cotton Socks"
-                        price="10.90"
-                        discountPrice="5.45"
-                    ></ProductDetails>
-                    <ProductDetails
-                        product="Tennis balls"
-                        price="6.00"
-                        discountPrice=""
-                    ></ProductDetails>
-                    <ProductDetails
-                        product="Plain T-Shirt"
-                        price="7.99"
-                        discountPrice=""
-                    ></ProductDetails>
-                </>
-            );
-        };
+        return (
+            <>
+                <button onClick={increaseCounter}>Clicked {counter} {counter === 1 ? 'time': 'times'} </button>
+            </>
+        )
+    }
+
+    function App() {
+
+        const [counter, setCounter] = React.useState(0);
+
+        return (
+            <>
+                <ButtonCounter
+                    counter = {counter}
+                    setCounter = {setCounter}
+                ></ButtonCounter>
+                <ButtonCounter
+                    counter = {counter}
+                    setCounter = {setCounter}
+                ></ButtonCounter>
+                <ResetButton
+                    setCounter={setCounter}
+                ></ResetButton>
+            </>
+        )
+    }
 
         const container = document.querySelector('.js-container');
         const root = ReactDOM.createRoot(container);
