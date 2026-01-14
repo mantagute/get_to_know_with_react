@@ -39,6 +39,32 @@
         );
     }
 
+    function ResetButton({setInputText}) {
+
+        function resetText() {
+            setInputText('')
+        }
+
+        return (
+            <>
+                <button onClick={resetText}>Reset</button>
+            </>
+        );
+    }
+
+    function ExampleButton({setInputText}) {
+
+        function setExample() {
+            setInputText("Ana Vilani")
+        }
+
+        return(
+            <>
+                <button onClick={setExample}>Example</button>
+            </>
+        );
+    }
+
     function App() {
 
         const [inputText, setInputText] = React.useState('');
@@ -49,6 +75,12 @@
                     inputText={inputText}
                     setInputText={setInputText}
                 ></UserInput>
+                <ResetButton
+                    setInputText={setInputText}
+                ></ResetButton>
+                <ExampleButton
+                    setInputText={setInputText}
+                ></ExampleButton>
                 <ResponsiveText
                     inputText={inputText}
                 ></ResponsiveText>
