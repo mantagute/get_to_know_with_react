@@ -96,4 +96,30 @@ body {
     background-color: rgb(220,53,69);
 }
 
+.input-container {
+    padding: 5px;
+}
+
+.input-text {
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 30px;
+    padding-left: 10px;
+    width: 360px;
+}
+
+.submit-button {
+    background-color: rgb(0,123,255);
+    border-radius: 5px;
+    border: none;
+    color: whitesmoke;
+    cursor: pointer;
+    margin: 5px;
+    padding: 10px;
+}
+
+.showhide-button {
+    margin: 10px;
+}
+
 

@@ -15,29 +15,82 @@
 
     <script type="text/babel"> 
 
-    function ToggleButton() {
+    function InputFromUser({data}) {
+        const [inputText, setInputText] = React.useState('');
 
-        const [isButtonOn, setButtonOn] = React.useState(true);
+        function saveInput(event) {
+            setInputText(event.target.value)
+        }
 
-        function toggle() {
-            setButtonOn(!isButtonOn);
+        const [showPassword, setShowPassword] = React.useState(false);
+
+        function toggleVisibility() {
+            setShowPassword(!showPassword);
         }
 
         return (
-            <div className="button-container">
-                <button 
-                    className={`toggle-button ${isButtonOn? "toggle-button-on" : 'toggle-button-off'}`}
-                    onClick={toggle}
-                >{isButtonOn? 'ON' : 'OFF' }</button>
+            <div className ="input-container">
+                <input 
+                    className="input-text"
+                    type={data === 'Password' && !showPassword ? 'password' : 'text'}
+                    placeholder={data}
+                    value={inputText}
+                    onChange={saveInput}
+                />
+                {data === 'Password' && (
+                    <ShowOrHideButton
+                        toggleVisibility={toggleVisibility}
+                        showPassword={showPassword}
+                    />
+                )}
             </div>
+            
+        );
+    }
+
+    function SubmitButton({action}) {
+        return (
+            <>
+                <button className="submit-button">{action}</button>
+            </>
+        );
+    }
+
+    function ShowOrHideButton({toggleVisibility, showPassword}) {
+        return (
+            <>
+                <button
+                    className="showhide-button"
+                    onClick={toggleVisibility}
+                >{showPassword === false ? 'Show' : 'Hide'}</button>
+            </>
+        )
+    }
+
+    function LoginForm() {
+        return (
+            <>
+                <InputFromUser
+                    data='Email'
+                />
+                <InputFromUser
+                    data='Password'
+                />
+                <SubmitButton
+                    action="Login"
+                />
+                <SubmitButton
+                    action="Sign Up"
+                />
+            </>
         );
     }
 
     function App() {
-
-        return (
+        return ( 
             <>
-                <ToggleButton></ToggleButton>
+                <h1>Hello, Welcome to My Website</h1>
+                <LoginForm/>
             </>
         );
     }
