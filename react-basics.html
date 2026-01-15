@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>React plays</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="js-container"></div>
@@ -14,78 +15,31 @@
 
     <script type="text/babel"> 
 
-    function UserInput({inputText, setInputText}) {
+    function ToggleButton() {
 
-        function saveInputText(event) {
-                setInputText(event.target.value);
-        }
+        const [isButtonOn, setButtonOn] = React.useState(true);
 
-        return (    
-            <> 
-                <input 
-                    type="text" 
-                    placeholder="Type a name here" 
-                    size="30"
-                    onChange={saveInputText}
-                    value={inputText}
-                ></input>
-            </>
-        );
-    }
-
-    function ResponsiveText({inputText}) {
-        return (
-            <p> Hello, {inputText}</p>
-        );
-    }
-
-    function ResetButton({setInputText}) {
-
-        function resetText() {
-            setInputText('')
+        function toggle() {
+            setButtonOn(!isButtonOn);
         }
 
         return (
-            <>
-                <button onClick={resetText}>Reset</button>
-            </>
-        );
-    }
-
-    function ExampleButton({setInputText}) {
-
-        function setExample() {
-            setInputText("Ana Vilani")
-        }
-
-        return(
-            <>
-                <button onClick={setExample}>Example</button>
-            </>
+            <div className="button-container">
+                <button 
+                    className={`toggle-button ${isButtonOn? "toggle-button-on" : 'toggle-button-off'}`}
+                    onClick={toggle}
+                >{isButtonOn? 'ON' : 'OFF' }</button>
+            </div>
         );
     }
 
     function App() {
 
-        const [inputText, setInputText] = React.useState('');
-
-        return(
+        return (
             <>
-                <UserInput
-                    inputText={inputText}
-                    setInputText={setInputText}
-                ></UserInput>
-                <ResetButton
-                    setInputText={setInputText}
-                ></ResetButton>
-                <ExampleButton
-                    setInputText={setInputText}
-                ></ExampleButton>
-                <ResponsiveText
-                    inputText={inputText}
-                ></ResponsiveText>
+                <ToggleButton></ToggleButton>
             </>
-        )
+        );
     }
 
     const container = document.querySelector('.js-container');

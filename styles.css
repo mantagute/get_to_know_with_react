@@ -75,3 +75,25 @@ body {
     scrollbar-width: none;
 }
 
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.toggle-button {
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+.toggle-button-on {
+    background-color: rgb(25,135,84);
+}
+
+.toggle-button-off {
+    background-color: rgb(220,53,69);
+}
+
+
