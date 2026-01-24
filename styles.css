@@ -75,6 +75,17 @@ body {
     scrollbar-width: none;
 }
 
+.welcome-message {
+    text-align: center;
+    justify-content: center;
+    color: rgb(120, 120, 120);
+}
+
+.loading-spinner {
+    height: 40px;
+    margin: -15px;
+}
+
 .button-container {
     display: flex;
     align-items: center;
@@ -121,5 +132,7 @@ body {
 .showhide-button {
     margin: 10px;
 }
+
+
 
 
