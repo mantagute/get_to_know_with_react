@@ -1,0 +1,23 @@
+nav {
+    display: flex;
+    align-items: center;
+}
+
+header{
+    height: 90px;
+    background-color: #21222A;
+    padding: 30px 25px;
+}
+
+
+nav > img {
+    width: 40px;
+    height: 100%;
+    margin-right: 7px;
+}
+
+nav > span {
+    color: #61DAFB;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
