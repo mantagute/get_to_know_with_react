@@ -1,0 +1,53 @@
+.journal-entry {
+    display: flex;
+}
+
+.journal-entry .marker {
+    margin-right: 4px;
+    width: 7px;
+}
+
+.main-image-container {
+    flex-shrink: 0;
+    height: 168px;
+    margin-right: 19px;
+    overflow: hidden;
+    width: 125px;
+}
+
+.main-image {
+    border-radius: 5px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.info-container span.country {
+    font-size: 0.7rem;
+    margin-right: 12px;
+    text-transform: uppercase;
+}
+
+.info-container a {
+    color: #2B283A;
+    font-size: 0.7rem;;
+}
+
+.info-container h2.entry-title {
+    margin-bottom: 17px;
+    margin-top: 7px;
+}
+
+.info-container p.trip-dates {
+    font-weight: bold;
+}
+
+.info-container p.entry-text {
+    -webkit-box-orient: vertical;  
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    font-size: 0.8rem;
+    line-clamp: 3;
+    line-height: 1.5;
+    overflow: hidden;
+}

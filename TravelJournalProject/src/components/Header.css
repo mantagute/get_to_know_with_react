@@ -1,0 +1,19 @@
+header {
+    align-items: center;
+    background-color: rgb(255, 65, 65);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+header > img {
+    margin-right: 7px;
+    width: 24px;
+}
+
+
+header > p {
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
