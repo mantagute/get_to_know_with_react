@@ -1,4 +1,6 @@
 import React from 'react';
+import ClaudeRecipe from './ClaudeRecipe';
+import IngredientsList from './IngredientsList';
 import './Main.css'
 
 
@@ -6,17 +8,18 @@ export default function Main() {
 
     const [ingredients, setIngredients] = React.useState([]);
 
-    const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
-    ))
-
-
     function addNewIngredient(formData) {
         const newIngredient = formData.get('ingredient');
         setIngredients(prevState => 
             [...prevState,
                 newIngredient
             ]);     
+    }
+
+    const [recipeShown, setRecipeShown] = React.useState(false);
+
+    function toggleStatus() {
+        setRecipeShown((prevState) => !prevState)
     }
 
     return (
@@ -34,10 +37,10 @@ export default function Main() {
                 <button>Add ingredient</button>
 
             </form>
-
-            <ul>
-                {ingredientsListItems}
-            </ul>
+            
+            <IngredientsList toggleStatus={toggleStatus} ingredients={ingredients}/>
+            
+            {recipeShown && <ClaudeRecipe/>}
 
         </main>
     )
