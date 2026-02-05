@@ -1,6 +1,6 @@
 import './IngredientsList.css'
 
-export default function IngredientsList({getRecipe, ingredients}) {
+export default function IngredientsList({getRecipe, ingredients, ref}) {
 
     const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
@@ -12,7 +12,7 @@ export default function IngredientsList({getRecipe, ingredients}) {
                 <h2>Ingredients on Hand:</h2>
                 <ul className='ingredients-list' aria-live='polite'>{ingredientsListItems}</ul>
                 {ingredients.length > 3 && <div className='get-recipe-container'>
-                    <div>
+                    <div ref={ref}>
                         <h3>Ready for a recipe?</h3>
                         <p>Generate a recipe from your list of ingredients.</p>
                     </div>

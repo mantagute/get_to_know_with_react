@@ -24,6 +24,14 @@ export default function Main() {
         setRecipe(recipeMarkdown);
     }
 
+    const recipeSection = React.useRef(null)
+
+    React.useEffect(() => {
+        if(recipe && recipeSection.current) {
+            recipeSection.current.scrollIntoView({behavior: 'smooth'})
+        }
+    }, [recipe])
+
     return (
         <main>
 
@@ -40,7 +48,7 @@ export default function Main() {
 
             </form>
             
-            <IngredientsList getRecipe={getRecipe} ingredients={ingredients}/>
+            <IngredientsList getRecipe={getRecipe} ingredients={ingredients} ref={recipeSection}/>
             
             {recipe && <ClaudeRecipe recipe={recipe}/>}
 
