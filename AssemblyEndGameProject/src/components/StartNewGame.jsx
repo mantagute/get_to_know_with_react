@@ -1,11 +1,11 @@
 import './StartNewGame.css'
 
-export default function StartNewGame({isGameOver}) {
+export default function StartNewGame({isGameOver, handleResetGame}) {
     
     return (
         ( isGameOver &&
             <section className='new-game'>
-                <button>New Game</button>
+                <button onClick={handleResetGame}>New Game</button>
             </section>
         )
     )

@@ -1,6 +1,6 @@
 import './Keyboard.css'
 
-export default function Keyboard({currentWord, guessedLetters, handleAddNewLetterGuess}) {
+export default function Keyboard({currentWord, guessedLetters, handleAddNewLetterGuess, isGameOver}) {
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -18,6 +18,7 @@ export default function Keyboard({currentWord, guessedLetters, handleAddNewLette
 
         return(
             <button 
+                disabled={isGameOver}
                 className={className}
                 key={letter}
                 onClick={() => handleAddNewLetterGuess(letter)}>

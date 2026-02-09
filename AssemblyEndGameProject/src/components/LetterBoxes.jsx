@@ -1,6 +1,6 @@
 import './LetterBoxes.css'
 
-export default function LetterBoxes({currentWord, guessedLetters}) {
+export default function LetterBoxes({currentWord, guessedLetters, isGameLost}) {
     
     const wordChars = [...currentWord];
     
@@ -9,8 +9,8 @@ export default function LetterBoxes({currentWord, guessedLetters}) {
         return (
             <span 
                 key={index} 
-                className='letter-slot'>
-                {guessedLetters.includes(letter) ? letter.toUpperCase() : ''}
+                className={`letter-slot ${isGameLost  && !guessedLetters.includes(letter) ? 'not-guessed-letter' : '' }`.trim()}>
+                {guessedLetters.includes(letter) || isGameLost ? letter.toUpperCase() : ''}
             </span>
         )
     })

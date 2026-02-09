@@ -5,12 +5,14 @@ import LanguagesChips from './components/LanguagesChips';
 import LetterBoxes from './components/LetterBoxes';
 import Keyboard from './components/Keyboard';
 import StartNewGame from './components/StartNewGame';
+import { getRandomWord } from './utils';
 import './App.css'
 import { languages } from './languages';
+import Confetti from 'react-confetti'
 
 function App() {
 
-  const [currentWord, setCurrentWord] = useState('react');
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
 
   const [guessedLetters, setGuessedLetters] = useState([]);
 
@@ -28,18 +30,37 @@ function App() {
       )   
   }
 
+  function resetGame() {
+    setCurrentWord(getRandomWord())
+    setGuessedLetters([])
+
+  }
+
   return (
       <>
           <Header/>
-          <GameStatus isGameLost={isGameLost} isGameWon={isGameWon} isGameOver={isGameOver}/>
+          <GameStatus 
+            isGameLost={isGameLost} 
+            isGameWon={isGameWon} 
+            isGameOver={isGameOver} 
+            currentWord={currentWord} 
+            guessedLetters={guessedLetters}
+            wrongGuessCount={wrongGuessCount}
+          />
           <LanguagesChips wrongGuessCount={wrongGuessCount}/>
-          <LetterBoxes currentWord={currentWord} guessedLetters={guessedLetters}/>
+          <LetterBoxes 
+            currentWord={currentWord} 
+            guessedLetters={guessedLetters}
+            isGameLost={isGameLost}
+          />
           <Keyboard 
             currentWord={currentWord} 
             guessedLetters={guessedLetters} 
             handleAddNewLetterGuess={addNewLetterGuess}
+            isGameOver={isGameOver}
           />
-          <StartNewGame isGameOver={isGameOver}/>
+          {isGameWon && <Confetti/>}
+          <StartNewGame isGameOver={isGameOver} handleResetGame={resetGame}/>
       </>
   )
 
