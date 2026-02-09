@@ -1,0 +1,18 @@
+.letter-container {
+    align-items: center;
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    margin-block: 40px;
+}
+
+.letter-slot {
+    align-items: center;
+    background-color: #323232;
+    border-bottom: 1px solid #f9f4da;
+    display: flex;
+    font-size: 1.2rem;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}

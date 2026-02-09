@@ -3,7 +3,7 @@ section.languages-chips {
     flex-wrap: wrap;
     gap: 5px;
     justify-content: center;
-    max-width: 350px;
+    max-width: 450px;
 }
 
 span.chip {
