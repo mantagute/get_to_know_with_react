@@ -1,15 +1,16 @@
 import './LetterBoxes.css'
 
-export default function LetterBoxes({currentWord}) {
+export default function LetterBoxes({currentWord, guessedLetters}) {
     
     const wordChars = [...currentWord];
     
     const letterSlots = wordChars.map((letter, index) => {
+        
         return (
             <span 
                 key={index} 
                 className='letter-slot'>
-                {letter.toUpperCase()}
+                {guessedLetters.includes(letter) ? letter.toUpperCase() : ''}
             </span>
         )
     })

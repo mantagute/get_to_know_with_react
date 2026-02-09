@@ -18,3 +18,11 @@
     justify-content: center;
     border-radius: 3px;
 }
+
+.keyboard button.correct-letter {
+    background-color: #10a95b;
+}
+
+.keyboard button.wrong-letter {
+    background-color: #ec5d49;
+}

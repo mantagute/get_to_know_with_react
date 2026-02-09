@@ -8,5 +8,21 @@ section.languages-chips {
 
 span.chip {
     border-radius: 3px;
+    overflow: hidden;
     padding: 4.5px;
+    position: relative;
+}
+
+span.lost::before {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    content: '💀';
+    display: flex;
+    font-size: 0.9rem;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }

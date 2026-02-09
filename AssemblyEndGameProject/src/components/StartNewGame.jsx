@@ -1,11 +1,12 @@
 import './StartNewGame.css'
 
-export default function StartNewGame() {
+export default function StartNewGame({isGameOver}) {
     
     return (
-        <section className='new-game'>
-            <button>New Game</button>
-        </section>
-        
+        ( isGameOver &&
+            <section className='new-game'>
+                <button>New Game</button>
+            </section>
+        )
     )
 }

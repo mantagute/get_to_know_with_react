@@ -1,9 +1,11 @@
 import './LanguagesChips.css'
 import {languages} from '../languages.js';
 
-export default function LanguagesChips() {
+export default function LanguagesChips({wrongGuessCount}) {
 
-    const languageElements = languages.map(language => {
+    const languageElements = languages.map((language, index) => {
+
+        const isLanguageLost = index < wrongGuessCount
 
         const styles = {
             backgroundColor: language.backgroundColor,
@@ -12,7 +14,7 @@ export default function LanguagesChips() {
 
         return (
             <span 
-                className='chip' 
+                className={`chip ${isLanguageLost ? 'lost' : ''}`}
                 style={styles} 
                 key={language.name}
             >{language.name}</span>

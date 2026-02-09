@@ -1,11 +1,20 @@
 section.game-status {
     align-items: center;
-    background-color: #10a95b;
     border-radius: 4px;
     color: #f9f4da;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin-block: 30px;
+    min-height: 70px;
+}
+
+section.game-status.won {
+    background-color: #10a95b;
+}
+
+section.game-status.loss {
+    background-color: #ba2a2a;
 }
 
 section.game-status > p {
